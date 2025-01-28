@@ -1,0 +1,49 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+class VeriDeposu {
+public:
+    void musteriEkle(const string& ad, const string& soyad, const string& tcno, double bakiye) {
+        ofstream dosya("musteri_tc.txt", ios::app);
+        if (dosya.is_open()) {
+            dosya << ad << "," << soyad << "," << tcno << "," << bakiye << endl;
+            cout << "Musteri basariyla eklendi." << endl;
+            dosya.close();
+        } else {
+            cout << "Dosya acilamadi." << endl;
+        }
+    }
+
+    void musterileriListele() {
+        ifstream dosya("musteriler_tc.txt");
+        if (dosya.is_open()) {
+            string satir;
+            while (getline(dosya, satir)) {
+                cout << satir << endl;
+            }
+            dosya.close();
+        } else {
+            cout << "Dosya acilamadi." << endl;
+        }
+    }
+};
+
+int main() {
+    VeriDeposu veriDeposu;
+    veriDeposu.musteriEkle("Fatih","Dane","48847393000",10000.0);
+    veriDeposu.musteriEkle("Mustafa","Olmez","48847393111",20000.0);
+    veriDeposu.musteriEkle("Safa","Kilinc","48847393222",30000.0);
+    veriDeposu.musteriEkle("Ahmet","Yilmaz","48847393333",-10000.0);
+    veriDeposu.musteriEkle("Veli","Turk","48847393444",-8000.0);
+    veriDeposu.musteriEkle("Bugra","Camli","48847393666",23000.0);
+    veriDeposu.musteriEkle("Mert","Kazanci","48847393777",43200.0);
+    veriDeposu.musteriEkle("Deniz","Karapinar","48847393888",32150.0);
+    veriDeposu.musteriEkle("Ozan","Sarioglu","48847393999",252700.0);
+    veriDeposu.musteriEkle("Ibrahim","Koyuturk","48847394000",-15000.0);
+    
+
+    return 0;
+}
